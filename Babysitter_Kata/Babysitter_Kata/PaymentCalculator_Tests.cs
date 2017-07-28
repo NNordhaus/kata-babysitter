@@ -15,9 +15,12 @@ namespace Babysitter_Kata
             {
                 var sut = new PaymentCalculator();
 
-                var startTime = new DateTime().AddHours(16); // 4 PM
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(16) // 4 PM
+                };
 
-                var actual = sut.GetAmountDue(startTime, new DateTime());
+                var actual = sut.GetAmountDue(job);
             }
 
             [TestMethod]
@@ -29,7 +32,13 @@ namespace Babysitter_Kata
                 var startTime = new DateTime().AddHours(17); // 5 PM
                 var endTime = new DateTime().AddHours(29); // 5 AM next day
 
-                var actual = sut.GetAmountDue(startTime, endTime);
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(17), // 5 PM
+                    end = new DateTime().AddHours(29) // 5 AM next day
+                };
+
+                var actual = sut.GetAmountDue(job);
             }
         }
     }

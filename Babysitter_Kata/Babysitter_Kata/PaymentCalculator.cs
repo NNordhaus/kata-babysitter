@@ -8,19 +8,25 @@ namespace Babysitter_Kata
 {
     public class PaymentCalculator
     {
-        public decimal GetAmountDue(DateTime start, DateTime end)
+        public decimal GetAmountDue(JobDetails job)
         {
-            if(start.Hour < 17)
+            if(job.start.Hour < 17)
             {
-                throw new ArgumentException("Cannot start before 5 PM", nameof(start));
+                throw new ArgumentException("Cannot start before 5 PM", nameof(job.start));
             }
 
-            if (end > new DateTime().AddHours(28))
+            if (job.end > new DateTime().AddHours(28))
             {
-                throw new ArgumentException("Cannot end after 4 AM", nameof(end));
+                throw new ArgumentException("Cannot end after 4 AM", nameof(job.end));
             }
 
             return 0m;
         }
+    }
+
+    public class JobDetails
+    {
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
     }
 }
