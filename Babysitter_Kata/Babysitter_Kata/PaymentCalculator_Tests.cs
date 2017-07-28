@@ -105,6 +105,21 @@ namespace Babysitter_Kata
                 Assert.AreEqual(expected, actual);
             }
 
+            [TestMethod]
+            public void Accurately_Pay_for_mixed_hours()
+            {
+                var sut = new PaymentCalculator();
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(20),
+                    bedTime = new DateTime().AddHours(22),
+                    end = new DateTime().AddHours(26)
+                };
+
+                var actual = sut.GetAmountDue(job);
+                var expected = 72m; // 2 hours pre bed time, 2 hours bed-midnight & 2 hours after midnight
+                Assert.AreEqual(expected, actual);
+            }
 
         }
     }
