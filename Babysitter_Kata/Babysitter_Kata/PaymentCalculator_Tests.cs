@@ -40,6 +40,22 @@ namespace Babysitter_Kata
 
                 var actual = sut.GetAmountDue(job);
             }
+
+            [TestMethod]
+            public void Pay_12_an_hour_when_end_time_matches_bed_Time()
+            {
+                var sut = new PaymentCalculator();
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(17),
+                    end = new DateTime().AddHours(18),
+                    bedTime = new DateTime().AddHours(18)
+                };
+
+                var actual = sut.GetAmountDue(job);
+
+                Assert.AreEqual(12m, actual);
+            }
         }
     }
 }

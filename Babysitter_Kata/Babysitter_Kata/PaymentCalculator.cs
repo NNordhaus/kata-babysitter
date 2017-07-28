@@ -20,13 +20,16 @@ namespace Babysitter_Kata
                 throw new ArgumentException("Cannot end after 4 AM", nameof(job.end));
             }
 
-            return 0m;
+            decimal pay = 12m * job.bedTime.Subtract(job.start).Hours;
+
+            return pay;
         }
     }
 
     public class JobDetails
     {
         public DateTime start { get; set; }
+        public DateTime bedTime { get; set; }
         public DateTime end { get; set; }
     }
 }
