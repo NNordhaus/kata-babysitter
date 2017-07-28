@@ -88,6 +88,24 @@ namespace Babysitter_Kata
 
                 Assert.AreEqual(16m, actual);
             }
+
+            [TestMethod]
+            public void Pay_for_full_hours_not_fractional()
+            {
+                var sut = new PaymentCalculator();
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(23).AddMinutes(30),
+                    bedTime = new DateTime().AddHours(24),
+                    end = new DateTime().AddHours(25).AddMinutes(30)
+                };
+
+                var actual = sut.GetAmountDue(job);
+                var expected = 12m + 32m; // 1 hour before bed & 2 hours after midnight
+                Assert.AreEqual(expected, actual);
+            }
+
+
         }
     }
 }

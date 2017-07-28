@@ -22,6 +22,15 @@ namespace Babysitter_Kata
                 throw new ArgumentException("Cannot end after 4 AM", nameof(job.end));
             }
 
+            // Round start time down to nearest hour.
+            job.start = job.start.AddMinutes(0 - job.start.Minute);
+
+            // Round the end time up to the nearest hour
+            if (job.end.Minute > 0)
+            {
+                job.end = job.end.AddHours(1).AddMinutes(0 - job.end.Minute);
+            }
+
             decimal pay = 12m * job.bedTime.Subtract(job.start).Hours;
 
             if (job.end > job.bedTime)
@@ -33,6 +42,8 @@ namespace Babysitter_Kata
             {
                 pay += 16m * job.end.Subtract(midnight).Hours;
             }
+
+
 
             return pay;
         }
