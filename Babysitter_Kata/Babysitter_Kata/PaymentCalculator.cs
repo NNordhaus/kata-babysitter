@@ -22,6 +22,11 @@ namespace Babysitter_Kata
 
             decimal pay = 12m * job.bedTime.Subtract(job.start).Hours;
 
+            if (job.end > job.bedTime)
+            {
+                pay += 8m * new DateTime().AddHours(24).Subtract(job.bedTime).Hours;
+            }
+
             return pay;
         }
     }
