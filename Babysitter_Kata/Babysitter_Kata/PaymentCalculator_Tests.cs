@@ -42,7 +42,7 @@ namespace Babysitter_Kata
             }
 
             [TestMethod]
-            public void Pay_12_an_hour_when_end_time_matches_bed_Time()
+            public void Pay_12_an_hour_between_start_and_bed_Time()
             {
                 var sut = new PaymentCalculator();
                 var job = new JobDetails()
