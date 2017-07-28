@@ -10,6 +10,11 @@ namespace Babysitter_Kata
     {
         public decimal GetAmountDue(DateTime start)
         {
+            if(start.Hour < 17)
+            {
+                throw new ArgumentException("Cannot start before 5 PM", nameof(start));
+            }
+
             return 0m;
         }
     }

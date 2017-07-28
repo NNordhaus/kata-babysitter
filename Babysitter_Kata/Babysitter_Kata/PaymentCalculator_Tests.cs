@@ -10,6 +10,7 @@ namespace Babysitter_Kata
         public class GetAmountDue_Should
         {
             [TestMethod]
+            [ExpectedException(typeof(ArgumentException), "Start time before 5PM should throw exception")]
             public void Throw_Error_For_Start_Before_5()
             {
                 var sut = new PaymentCalculator();
