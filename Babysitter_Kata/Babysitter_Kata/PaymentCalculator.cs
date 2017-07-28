@@ -10,7 +10,7 @@ namespace Babysitter_Kata
     {
         public decimal GetAmountDue(JobDetails job)
         {
-            if(job.start.Hour < 17)
+            if(job.start < new DateTime().AddHours(17))
             {
                 throw new ArgumentException("Cannot start before 5 PM", nameof(job.start));
             }
@@ -25,6 +25,11 @@ namespace Babysitter_Kata
             if (job.end > job.bedTime)
             {
                 pay += 8m * new DateTime().AddHours(24).Subtract(job.bedTime).Hours;
+            }
+
+            if (job.end > new DateTime().AddHours(24))
+            {
+                pay += 16m * job.end.Subtract(new DateTime().AddHours(24)).Hours;
             }
 
             return pay;

@@ -65,12 +65,28 @@ namespace Babysitter_Kata
                 {
                     start = new DateTime().AddHours(23),
                     bedTime = new DateTime().AddHours(23),
-                    end = new DateTime().AddHours(25)
+                    end = new DateTime().AddHours(24)
                 };
 
                 var actual = sut.GetAmountDue(job);
 
                 Assert.AreEqual(8m, actual);
+            }
+
+            [TestMethod]
+            public void Pay_16_an_hour_between_midnight_and_end()
+            {
+                var sut = new PaymentCalculator();
+                var job = new JobDetails()
+                {
+                    start = new DateTime().AddHours(24),
+                    bedTime = new DateTime().AddHours(24),
+                    end = new DateTime().AddHours(25)
+                };
+
+                var actual = sut.GetAmountDue(job);
+
+                Assert.AreEqual(16m, actual);
             }
         }
     }
