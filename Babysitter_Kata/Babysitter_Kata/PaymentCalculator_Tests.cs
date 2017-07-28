@@ -17,7 +17,19 @@ namespace Babysitter_Kata
 
                 var startTime = new DateTime().AddHours(16); // 4 PM
 
-                var actual = sut.GetAmountDue(startTime);
+                var actual = sut.GetAmountDue(startTime, new DateTime());
+            }
+
+            [TestMethod]
+            [ExpectedException(typeof(ArgumentException), "End time After 4AM should throw exception")]
+            public void Throw_Error_For_End_After_4AM()
+            {
+                var sut = new PaymentCalculator();
+
+                var startTime = new DateTime().AddHours(17); // 5 PM
+                var endTime = new DateTime().AddHours(29); // 5 AM next day
+
+                var actual = sut.GetAmountDue(startTime, endTime);
             }
         }
     }
